@@ -1,0 +1,40 @@
+{
+  "entries": [
+    {
+      "t": 1755374196510,
+      "wallet": "0x97f4bd5497F59975910e7D8a5D6eC3CBf4EA49E1",
+      "score": 0,
+      "tx": "0x5c58379f718f08821c63f83db1a29a976851b2c8a6505336c38124520643d55b"
+    },
+    {
+      "t": 1755374276435,
+      "wallet": "0x97f4bd5497F59975910e7D8a5D6eC3CBf4EA49E1",
+      "score": 0,
+      "tx": "0x1c614f4483f1c9b356cef5d346c19b7e384e22fc039cf6962c4c22a949ff0f42"
+    },
+    {
+      "t": 1755374305095,
+      "wallet": "0x97f4bd5497F59975910e7D8a5D6eC3CBf4EA49E1",
+      "score": 0,
+      "tx": "0x13dfeab92f49f328a2405fc8df72fad401fc1957c0d89e4f8854c1e5240f6a4f"
+    },
+    {
+      "t": 1755375404218,
+      "wallet": "0x97f4bd5497F59975910e7D8a5D6eC3CBf4EA49E1",
+      "score": 3,
+      "tx": "0xd13d6ecef11124e77282c0cb54ad48b5fe7c5fbaf08a674d6f81e3281d8cacdf"
+    },
+    {
+      "t": 1755375757851,
+      "wallet": "0x97f4bd5497F59975910e7D8a5D6eC3CBf4EA49E1",
+      "score": 7,
+      "tx": "0x5cd86558c6459c442a15bc1e3207a82d2a681905c19b173d0e5176fa919f95cb"
+    },
+    {
+      "t": 1755376168275,
+      "wallet": "0x97f4bd5497F59975910e7D8a5D6eC3CBf4EA49E1",
+      "score": 13,
+      "tx": "0xabac0563160ef96d85162c9ede9b6686bef331435f1e71acfcf3fc2a9c2f8d6c"
+    }
+  ]
+}

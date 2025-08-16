@@ -1,0 +1,186 @@
+/* ========== THEME VARIABLES (Futuristic Neon) ========== */
+:root{
+  --bg:#030712;               /* base dark */
+  --bg1:#071022;
+  --bg2:#0c1530;
+  --glass:rgba(13,20,40,.55);
+
+  --text:#e6f1ff;
+  --muted:#a9b6d3;
+
+  --accent:#7df9ff;           /* neon cyan */
+  --accent-2:#8a7dff;         /* neon purple */
+  --accent-3:#22d3ee;         /* cyan gradient */
+  --line:rgba(39,64,110,.55);
+}
+
+/* ========== RESET & GLOBAL ========== */
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  color:var(--text);
+  font-family:'Exo 2', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* layered nebula background */
+  background:
+    radial-gradient(1200px 800px at 15% 0%, #0e1a3b 0%, transparent 70%),
+    radial-gradient(900px 600px at 85% 10%, #0b1440 0%, transparent 70%),
+    radial-gradient(900px 600px at 50% 100%, #0a1836 0%, transparent 65%),
+    linear-gradient(135deg, #040b1a 0%, #050d22 45%, #0a1634 100%), var(--bg);
+
+  /* tiny stars */
+  background-attachment: fixed;
+  position: relative;
+}
+
+.wrap{max-width:1120px;margin:0 auto;padding:22px}
+
+/* ========== TOP BAR ========== */
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.brand{
+  font-family:'Orbitron', sans-serif;
+  font-weight:900;letter-spacing:1px;font-size:26px;
+  background:linear-gradient(90deg,#bfe6ff,#7df9ff 55%,#9c8bff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 0 24px rgba(125,249,255,.22),0 0 4px rgba(125,249,255,.2);
+}
+.right{display:flex;align-items:center;gap:12px}
+.id{color:#cfe9ff}
+
+.btn{
+  font-family:'Orbitron', sans-serif;
+  background:linear-gradient(135deg,#0ea5e9,#8a7dff);
+  border:0;color:#031323;padding:10px 14px;border-radius:12px;
+  font-weight:800;cursor:pointer;letter-spacing:.3px;
+  transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  box-shadow:0 6px 18px rgba(61,227,255,.25);
+}
+.btn:hover{transform:translateY(-1px) scale(1.03);filter:brightness(1.05)}
+.btn:disabled{opacity:.6;cursor:not-allowed;filter:none}
+
+/* ========== TABS ========== */
+.tabs{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.tab{
+  font-family:'Orbitron', sans-serif;
+  background:linear-gradient(180deg,rgba(18,28,56,.6),rgba(12,18,40,.6));
+  border:1px solid var(--line);color:var(--text);
+  padding:8px 14px;border-radius:12px;cursor:pointer;letter-spacing:.2px
+}
+.tab.active{
+  border-color:var(--accent);
+  box-shadow:0 0 0 2px #112746, inset 0 0 18px rgba(61,227,255,.22), 0 8px 24px rgba(0,0,0,.35)
+}
+
+/* ========== PANELS & CARDS ========== */
+.panel{display:block}
+.card{
+  background:linear-gradient(180deg,rgba(11,18,38,.72),rgba(8,13,28,.6));
+  border:1px solid var(--line);
+  padding:16px;border-radius:18px;
+  box-shadow:0 10px 40px rgba(0,0,0,.35), inset 0 0 0 1px rgba(125,249,255,.06);
+  backdrop-filter:blur(6px);
+}
+.card h3{margin:0 0 10px 0;font-family:'Orbitron',sans-serif}
+
+/* ========== SMALLS ========== */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stat .label{color:var(--muted);font-size:12px}
+.stat .value{font-weight:800;margin-top:6px}
+.mono{font-family:ui-monospace,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+.small{font-size:12px;color:var(--muted)}
+.link{color:var(--accent)}
+.list{display:flex;flex-direction:column;gap:12px}
+.row{display:flex;gap:10px;align-items:center}
+.row.between{justify-content:space-between}
+.center{display:grid;place-items:center;min-height:70vh}
+
+/* ========== GAME AREA ========== */
+.game-wrap{
+  display:flex;gap:18px;flex-wrap:wrap;
+  align-items:flex-start;justify-content:center;
+}
+
+/* Canvas frame (glass neon) */
+.canvas-shell{
+  border-radius:18px;border:1px solid rgba(31,44,77,.9);
+  box-shadow:
+    0 0 0 1px rgba(125,249,255,.05) inset,
+    0 18px 50px rgba(0,0,0,.45),
+    0 0 24px rgba(125,249,255,.12);
+  overflow:hidden;background:rgba(10,17,34,.7);
+  margin:0 auto;
+}
+.game{display:block;width:min(92vw,420px);height:auto}
+
+/* Right controls */
+.controls{display:flex;flex-direction:column;gap:12px;min-width:280px}
+.info{min-height:22px;color:var(--muted)}
+
+/* mini help box */
+.inline-guide{
+  max-width:420px;font-size:13px;line-height:1.5;
+  background:linear-gradient(180deg,rgba(13,20,40,.88),rgba(8,13,25,.78));
+  border:1px solid var(--line);
+  box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 0 0 1px rgba(125,249,255,.06);
+  padding:12px 14px;border-radius:12px;color:var(--muted)
+}
+.inline-guide b{color:#dff7ff;font-family:'Orbitron',sans-serif}
+
+/* ========== WATERMARK (X @MaxisCrypto) ========== */
+.watermark{
+  position:fixed;right:16px;bottom:16px;z-index:50;
+  display:flex;align-items:center;gap:8px;
+  padding:9px 12px;border-radius:999px;
+  background:linear-gradient(180deg,rgba(13,20,40,.75),rgba(8,13,25,.65));
+  border:1px solid var(--line);
+  box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 0 0 1px rgba(125,249,255,.06);
+  text-decoration:none;color:var(--text);font-family:'Orbitron',sans-serif
+}
+.watermark:hover{box-shadow:0 0 0 2px rgba(125,249,255,.25),0 12px 40px rgba(0,0,0,.45)}
+
+/* ========== SUBMIT STATUS BOX ========== */
+.status-box{
+  padding:12px 14px;border-radius:12px;
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(13,20,40,.88),rgba(8,13,25,.78));
+  box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 0 0 1px rgba(125,249,255,.06);
+  color:var(--muted)
+}
+.status-box .status-title{
+  font-weight:800;color:#dff7ff;margin-bottom:6px;font-family:'Orbitron',sans-serif
+}
+.status-box.sub{border-color:#3aa3ff;box-shadow:0 0 24px rgba(58,163,255,.15) inset}
+.status-box.ok{border-color:#32d38a;box-shadow:0 0 24px rgba(50,211,138,.12) inset}
+.status-box.err{border-color:#ff6e6e;box-shadow:0 0 24px rgba(255,110,110,.12) inset}
+.status-box .status-link{display:inline-block;margin-top:6px;color:var(--accent)}
+
+/* ========== TABLE (Leaderboard) ========== */
+.table-wrap{overflow:auto;border-radius:12px;border:1px solid var(--line)}
+.table{
+  width:100%; border-collapse:separate; border-spacing:0;
+  background:linear-gradient(180deg,rgba(12,18,40,.6),rgba(10,16,34,.55));
+}
+.table th, .table td{
+  padding:10px 12px; text-align:left; font-size:14px;
+  border-bottom:1px solid rgba(39,64,110,.35);
+}
+.table thead th{
+  position:sticky; top:0; background:rgba(12,18,40,.85);
+  font-weight:800; color:#dff7ff; z-index:1; font-family:'Orbitron',sans-serif;
+}
+.table tbody tr:nth-child(even){background:rgba(12,18,40,.35)}
+.table .rank{width:44px;color:#a7c7ff}
+.table .you{background:linear-gradient(90deg,rgba(61,227,255,.12),transparent)}
+.badge-you{
+  display:inline-block; margin-left:8px; font-size:11px; padding:2px 6px;
+  border-radius:999px; color:#031323; background:linear-gradient(135deg,#22d3ee,#8a7dff);
+  font-family:'Orbitron',sans-serif
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 860px){
+  .wrap{padding:16px}
+  .controls{min-width:100%;order:2}
+  .canvas-shell{flex:1 1 100%;order:1}
+}

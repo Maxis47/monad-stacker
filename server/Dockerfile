@@ -1,9 +1,14 @@
 FROM node:20-alpine
 WORKDIR /app
+
+# Install deps deterministik
 COPY package*.json ./
 RUN npm ci --omit=dev
+
+# Copy source code
 COPY . .
+
 ENV NODE_ENV=production
-ENV PORT=3000
-EXPOSE 3000
+
+# Start server (Railway inject PORT otomatis)
 CMD ["node","src/index.js"]

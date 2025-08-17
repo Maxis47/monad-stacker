@@ -1,14 +1,17 @@
-FROM node:20-alpine
+# Server Dockerfile (relaxed install so lock mismatch tidak bikin gagal)
+FROM node:20-alpine AS base
+
 WORKDIR /app
-
-# Install deps deterministik
-COPY package*.json ./
-RUN npm ci --omit=dev
-
-# Copy source code
-COPY . .
-
 ENV NODE_ENV=production
 
-# Start server (Railway inject PORT otomatis)
-CMD ["node","src/index.js"]
+# Copy manifest dulu biar layer cache efisien
+COPY package*.json ./
+
+# Pakai npm install (BUKAN npm ci) agar tidak fail kalau lockfile belum sync
+RUN npm install --omit=dev
+
+# Baru copy seluruh source
+COPY . .
+
+EXPOSE 3000
+CMD ["npm", "start"]

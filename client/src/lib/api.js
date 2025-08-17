@@ -1,18 +1,15 @@
-// Client API helpers for the Monad Stacker frontend
-// All endpoints are served by your Railway server.
-// Make sure Vercel has VITE_API_BASE set to your Railway URL, e.g. https://monad-stacker.up.railway.app
-// (No trailing slash; this code will handle either case.)
+// client/src/lib/api.js
+// Helper untuk memanggil API server (Railway).
+// Pastikan di Vercel env: VITE_API_BASE = https://monad-stacker.up.railway.app  (tanpa trailing slash)
 
 const API_BASE_RAW = import.meta.env.VITE_API_BASE || '';
-const API_BASE = API_BASE_RAW.replace(/\/+$/, ''); // strip trailing slash if any
+const API_BASE = API_BASE_RAW.replace(/\/+$/, ''); // buang trailing slash
 
 async function req(method, path, body) {
   const url = `${API_BASE}${path}`;
   const init = {
     method,
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
   };
   if (body !== undefined) init.body = JSON.stringify(body);
@@ -21,51 +18,42 @@ async function req(method, path, body) {
   let data = null;
   try {
     data = await res.json();
-  } catch {
-    // ignore JSON parse errors; we'll surface HTTP text below if needed
+  } catch (_) {
+    // abaikan parse error; akan ditangani lewat status
   }
-
   if (!res.ok) {
-    const msg =
-      (data && (data.error || data.message)) ||
-      `HTTP ${res.status} ${res.statusText}`;
+    const msg = (data && (data.error || data.message)) || `HTTP ${res.status} ${res.statusText}`;
     throw new Error(msg);
   }
   return data ?? {};
 }
 
-/* ===========================
-   Public API used by the UI
-   =========================== */
+/* ====== FUNGSI YANG DIPAKAI UI ====== */
 
-// Start a signed play session
+// Mulai sesi game (server memberi token)
 export async function startSession(wallet) {
-  // POST /api/start-session  ->  { sessionId, token }
   return req('POST', '/api/start-session', { wallet });
 }
 
-// Submit a finished run (on-chain submit happens server-side)
-// Expected payload: { sessionId, token, wallet, scoreDelta, txDelta? }
+// Submit skor (server yang call on-chain)
 export async function submitScore(payload) {
-  // POST /api/submit  ->  { ok: true, txHash }
+  // payload: { sessionId, token, wallet, scoreDelta, txDelta? }
   return req('POST', '/api/submit', payload);
 }
 
-// Fetch a wallet’s local history (if your UI uses it)
+// Ambil riwayat skor wallet (jika dipakai di tab History)
 export async function getHistory(wallet) {
-  // GET /api/history?wallet=0x...
   const qs = new URLSearchParams({ wallet }).toString();
   return req('GET', `/api/history?${qs}`);
 }
 
-// 🎯 The missing function that caused the build to fail
-// Returns top 50 global leaderboard entries, e.g. [{ username, wallet, totalScore }, ...]
+// 🎯 Inilah export yang hilang dan bikin build gagal
 export async function getLeaderboard() {
-  // GET /api/leaderboard
+  // Top 50 global dari server
   return req('GET', '/api/leaderboard');
 }
 
-/* Optional: default export (handy in some files) */
+// (opsional) default export
 export default {
   startSession,
   submitScore,

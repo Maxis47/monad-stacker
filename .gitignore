@@ -1,2 +1,12 @@
-server\.env
-client\.env
+node_modules/
+client/node_modules/
+server/node_modules/
+dist/
+client/dist/
+server/dist/
+.env
+server/.env
+server/data/*.json
+.DS_Store
+Thumbs.db
+.vscode/
